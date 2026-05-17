@@ -1,0 +1,28 @@
+# Makefile
+NVCC = nvcc
+# -O3 abilita le massime ottimizzazioni
+# Rimuovendo -arch=sm_75, nvcc compilerà per l'architettura di default, 
+# garantendo la massima compatibilità sulla macchina di chi lo compila.
+NVCC_FLAGS = -O3 
+
+# Directories
+SRC_DIR = src
+BIN_DIR = bin
+
+# Targets
+TARGET = $(BIN_DIR)/bmatmul
+SRC = $(SRC_DIR)/bmatmul.cu
+
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+	@mkdir -p $(BIN_DIR)
+	$(NVCC) $(NVCC_FLAGS) $< -o $@
+
+clean:
+	rm -rf $(BIN_DIR)
+
+run: $(TARGET)
+	./$(TARGET) 1024 1024 1024 32 42
+
+.PHONY: all clean run

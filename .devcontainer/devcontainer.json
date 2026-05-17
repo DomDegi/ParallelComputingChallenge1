@@ -1,0 +1,17 @@
+{
+  "name": "CUDA C++ Environment",
+  "image": "mcr.microsoft.com/devcontainers/cpp:1-ubuntu-22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/nvidia-cuda:1": {
+      "installCudnn": false
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack"
+      ]
+    }
+  }
+}
